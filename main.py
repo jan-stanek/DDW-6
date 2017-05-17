@@ -342,8 +342,8 @@ def testRecommend(user, topCount, topUsers, wCB, wCF):
     return topMovies
 
 
-ref = refRecommend(26, 10, 3, 1, 0)
-test = testRecommend(26, 10, 3, 1, 0)
+ref = refRecommend(26, 100, 3, 0, 1)[:10]
+test = testRecommend(26, 100, 3, 0, 1)[:10]
 intersect = list(set(ref) & set(test))
 
 prec = len(intersect) / len(test)
