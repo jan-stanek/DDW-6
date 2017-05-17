@@ -307,7 +307,7 @@ def testRecommend(user, topCount, topUsers, wCB, wCF):
         relatedUser.append(u)
         relatedUserDistance.append(distance)
 
-    sortedUSimilarities = np.argsort(relatedUserDistance)
+    sortedUSimilarities = np.delete(np.argsort(relatedUserDistance), 0, 0)
 
     topMovies2Distances = []
 
@@ -342,8 +342,8 @@ def testRecommend(user, topCount, topUsers, wCB, wCF):
     return topMovies
 
 
-ref = refRecommend(26, 5, 3, 0, 1)
-test = testRecommend(26, 5, 3, 0, 1)
+ref = refRecommend(26, 10, 3, 1, 0)
+test = testRecommend(26, 10, 3, 1, 0)
 intersect = list(set(ref) & set(test))
 
 prec = len(intersect) / len(test)
@@ -355,3 +355,6 @@ print('recall')
 print(rec)
 print('f-measure')
 print((2*prec*rec) / (prec + rec))
+
+print(ref)
+print(test)
